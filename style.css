@@ -1,0 +1,510 @@
+header {
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 20px;
+}
+
+.logo {
+  flex: 1;
+}
+
+.logo img {
+  max-width: 20%;
+}
+
+.menu-icon {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 24px;
+  margin-left: 10px;
+}
+
+.bar {
+  width: 30px;
+  height: 3px;
+  background-color: #333;
+  transition: all 0.2s ease-in-out;
+}
+
+.menu {
+  display: none;
+}
+
+.menu li {
+  display: block;
+  margin: 10px 0;
+}
+
+.menu a {
+  display: block;
+  text-align: right;
+  text-transform: uppercase;
+  color: #333;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 10px;
+  transition: all 0.2s ease-in-out;
+}
+
+@media only screen and (min-width: 768px) {
+  .menu-icon {
+    display: none;
+  }
+
+  .menu {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .menu li {
+    margin: 0 10px;
+  }
+
+  .menu a {
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .menu {
+    position: absolute;
+    top: 80px;
+    right: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    display: none;
+  }
+
+  .menu.open {
+    display: block;
+  }
+
+  .menu li {
+    margin: 10px;
+  }
+
+  .menu a {
+    text-align: center;
+    display: block;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #333;
+    padding: 10px;
+  }
+
+  .menu-icon {
+    margin-right: 10px;
+  }
+
+  .menu-icon .bar {
+    background-color: #333;
+  }
+}
+
+
+/*  styles pour general et tricorps */
+body {
+ margin: 0;
+ padding: 50;
+ font-family:'Audi Type Extended', sans-serif;
+}
+
+.container {
+ display: flex;
+ height: 100vh;
+ padding:0;
+ width:100%
+}
+
+.section {
+ flex: 1;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ height: 100%;
+ overflow: hidden;
+ background-size: cover;
+ background-position: center;
+ color: #fff;
+ transition: flex .6s ease;
+ position: relative;
+}
+
+.section .overlay {
+ background-color: rgba(0, 0, 0, 0.7);
+ width: 100%;
+ height: 100%;
+ position: absolute;
+ transition: background-color .8s ease;
+}
+
+.section .content {
+ z-index: 2;
+}
+
+.section:hover {
+ flex: 2;
+}
+
+.section:hover .overlay {
+ background-color: rgba(0, 0, 0, 0.25);
+}
+
+#electrique {
+  background-image: url(img/nouvo.jpg);
+}
+
+
+
+#disponibles {
+ background-image: url(img/voiture.jpg);
+}
+
+#rs {
+ background-image: url(img/moto.jpg);
+
+ 
+ 
+ }
+
+
+html,body {
+ margin: 0;
+ padding: 0;
+ background-color: #ffffff ;
+}
+
+.content h4 a{color:white;text-decoration:none;}
+.content h5 a{color:#333333;text-decoration:none;}
+
+.col-sm-4 > span, .col-sm-4 > h1 {
+ display: inline-block;
+}
+
+.container-fluid {
+   padding:0px!important;
+}
+
+
+a.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  border: 2px solid #ff0000;
+  transition: background-color 0.3s ease;
+}
+
+a.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  border: 2px solid #ff0000;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+a.btn:hover {
+  transform: scale(1.1);
+}
+
+
+
+
+/* footer */
+footer {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  padding: 20px 0;
+}
+
+.container1 {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-left img {
+  width: 100px;
+  margin-bottom: 10px;
+}
+
+.footer-left p {
+  margin: 0;
+}
+
+.footer-right ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.footer-right li {
+  margin-right: 20px;
+}
+
+.footer-right a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+}
+
+/* voiture */
+
+.vehicule {
+  display: inline-block;
+  width: calc((90% - 40px) / 3);
+  margin: 29px;
+  padding: 10px;
+  border: 2px solid rgb(255, 0, 0);
+  vertical-align: top;
+  box-sizing: border-box;
+  border-radius: 20px;
+  min-height: 300px;
+  background-color: #f7f7f7;
+  text-align: center;
+}
+
+.vehicule p {
+  margin: 10px 0;
+}
+
+.vehicule img {
+  display: block;
+  margin: 0 auto;
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .vehicule {
+    width: calc((90% - 20px) / 2);
+    margin: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .vehicule {
+    width: 90%;
+    margin: 10px;
+  }
+}
+
+/* filtre */
+
+.filtre {
+  margin-bottom: 20px;
+  font-size: 25px;
+  width: calc((90% - 40px) / 3);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  border: 2px solid rgb(255, 0, 0);
+  border-radius: 20px;
+  text-align: center;
+}
+
+.filtre label {
+  font-weight: bold;
+}
+
+.filtre select {
+  margin-left: 10px;
+}
+
+.filtre input[type="submit"] {
+  margin-left: 10px;
+  padding: 6px 12px;
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.filtre input[type="submit"]:hover {
+  background-color: #ff0000c5;
+}
+
+/* menu deroulant */
+
+#filtre {
+  padding: 10px; /* Espacement intérieur */
+  font-size: 16px; /* Taille du texte */
+  border: 1px solid #ccc; /* Bordure */
+  border-radius: 4px; /* Coins arrondis */
+  width: 200px; /* Largeur du menu déroulant */
+  background-color: #f7f7f7; /* Couleur de fond */
+  color: #333; /* Couleur du texte */
+}
+
+#filtre option {
+  padding: 5px; /* Espacement intérieur des options */
+}
+
+#filtre:hover, #filtre:focus {
+  border-color: #999; /* Couleur de la bordure au survol ou focus */
+  outline: none; /* Suppression de l'effet d'outline */
+}
+
+#filtre option:hover {
+  background-color: #ddd; /* Couleur de fond des options au survol */
+}
+
+#filtre option:checked {
+  background-color: #bbb; /* Couleur de fond de l'option sélectionnée */
+  font-weight: bold; /* Texte en gras pour l'option sélectionnée */
+}
+
+
+
+/* login */
+.login {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.login h2 {
+  text-align: center;
+}
+
+.login label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.login input[type="text"],
+.login input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.login input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login input[type="submit"]:hover {
+  background-color: #ff0000;
+}
+
+
+/* Styles pour le formulaire d'ajout de voiture */
+
+.ajout {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.ajout label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #333;
+}
+
+.ajout input[type="text"],
+.ajout input[type="date"],
+.ajout input[type="number"],
+.ajout textarea,
+.ajout select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  background-color: #f8f8f8;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  transition: border-bottom-color 0.3s ease;
+}
+
+.ajout input[type="text"]:focus,
+.ajout input[type="date"]:focus,
+.ajout input[type="number"]:focus,
+.ajout textarea:focus,
+.ajout select:focus {
+  border-bottom-color: #ff0000;
+  outline: none;
+}
+
+.ajout select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 25px;
+  background: url("arrow_down_icon.png") no-repeat right center;
+  background-size: 20px;
+}
+
+.ajout button[type="submit"] {
+  padding: 12px 20px;
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
+}
+
+.ajout button[type="submit"]:hover {
+  background-color: #e60000;
+}
+
+.ajout .error {
+  color: red;
+  margin-top: 5px;
+  font-size: 12px;
+}
+
+.custom-file-input::file-selector-button {
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.custom-file-input::file-selector-button:hover {
+  background-color: #e8e8e8;
+}
+
+
+
+
+
