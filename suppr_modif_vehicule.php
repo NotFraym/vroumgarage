@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+// Vérifiez si l'utilisateur est connecté et a le statut d'administrateur
+if (!isset($_SESSION['username']) || $_SESSION['statut'] !== 'admin') {
+    // Redirigez l'utilisateur vers une autre page ou affichez un message d'erreur
+    header("Location: index.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +17,6 @@
     <title>Modifier ou supprimer un véhicule - Administration</title>
 </head>
 <body>
-
     <header>
         <?php include('header.php'); ?>
     </header>

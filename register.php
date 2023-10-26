@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		$stmt->execute();
 
 		echo "Inscription réussie ! Vous pouvez maintenant vous connecter.";
-		echo "<a href='index.php'><button>Retour à la page d'accueil</button></a>";
+		echo "<a href='/index.php'><button>Retour à la page d'accueil</button></a>";
 	}
 
 	$stmt->close();

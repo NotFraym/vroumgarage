@@ -24,19 +24,19 @@
 <div class="container">
   <div id="electrique" class="section">
     <div class="content">
-    <h4><a href="nouveautes.php" class="btn"><h1>Nouveautés</h1></a></h4>
+    <h4><a href="/nouveautes.php" class="btn"><h1>Nouveautés</h1></a></h4>
     </div>
     <div class="overlay"></div>
   </div>
   <div id="disponibles" class="section">
     <div class="content">
-    <h4><a href="voitures.php" class="btn"><h1>Voitures</h1></a></h4>
+    <h4><a href="/voitures.php" class="btn"><h1>Voitures</h1></a></h4>
     </div>
     <div class="overlay"></div>
   </div>
   <div id="rs" class="section">
   <div class="content">
-    <h4><a href="motos.php" class="btn"><h1>Motos</h1></a></h4>
+    <h4><a href="/motos.php" class="btn"><h1>Motos</h1></a></h4>
     </div>
     <div class="overlay"></div>
   </div>

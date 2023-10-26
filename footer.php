@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="/style.css">
 <footer>
   <div class="container1">
     <div class="footer-left">
@@ -9,10 +9,10 @@
     </div>
     <div class="footer-right">
       <ul>
-      <li><a href="nouveautes.php">Nouveautés</a></li>
-      <li><a href="voitures.php">Voiture</a></li>
-      <li><a href="motos.php">Moto</a></li>
-      <li><a href="login.php">Se connecter</a></li>
+      <li><a href="/nouveautes.php">Nouveautés</a></li>
+      <li><a href="/voitures.php">Voiture</a></li>
+      <li><a href="/motos.php">Moto</a></li>
+      <li><a href="/login.php">Se connecter</a></li>
       </ul>
     </div>
   </div>

@@ -1,58 +1,105 @@
 <?php
 // Connexion à la base de données
-$conn = new mysqli("localhost", "root", "", "garage");
+include('connexion.php');
 
-// Vérifier la connexion
+$conn = new mysqli($host, $user, $pass, $dbname);
 if ($conn->connect_error) {
-    die("Erreur de connexion à la base de données : " . $conn->connect_error);
+    die("Connexion échouée : " . $conn->connect_error);
 }
 
-// Récupération des données du formulaire
-$immatriculation = $_POST['immatriculation'];
-$type = $_POST['type'];
-$marque = $_POST['marque'];
-$modele = $_POST['modele'];
-$date_premiere_circulation = $_POST['date_premiere_circulation'];
-$prix = $_POST['prix'];
-$date_rentree_garage = $_POST['date_rentree_garage'];
-$chevaux = $_POST['chevaux'];
-$description = $_POST['description'];
+// Vérification que les données ont bien été envoyées en POST
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Récupération de l'immatriculation du véhicule à modifier
+    $immatriculation = $_POST['immatriculation'];
 
-// Requête SQL pour mettre à jour les informations du véhicule
-$sql = "UPDATE vehicule SET type = '$type', marque = '$marque', modele = '$modele', date_premiere_circulation = '$date_premiere_circulation', prix = '$prix', date_rentree_garage = '$date_rentree_garage', chevaux = '$chevaux', description = '$description' WHERE immatriculation = '$immatriculation'";
+    // Requête SQL pour récupérer les informations du véhicule à modifier
+    $sql = "SELECT * FROM vehicule WHERE immatriculation = '$immatriculation'";
+    $result = $conn->query($sql);
 
-// Vérifier si l'image a été modifiée
-if (!empty($_FILES['nouvelle_image']['name'])) {
-    $nouvelleImage = $_FILES['nouvelle_image'];
-    
-    // Gérer le téléchargement de la nouvelle image
-    $cheminImage = "image_vehicule/"; // Chemin du répertoire où vous souhaitez enregistrer les images
-    $nomImage = $_POST['immatriculation'] . "." . pathinfo($nouvelleImage['name'], PATHINFO_EXTENSION);
-    $cheminCompletImage = $cheminImage . $nomImage;
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $type = $row['type'];
+        $marque = $row['marque'];
+        $modele = $row['modele'];
+        $date_premiere_circulation = $row['date_premiere_circulation'];
+        $prix = $row['prix'];
+        $date_rentree_garage = $row['date_rentree_garage'];
+        $chevaux = $row['chevaux'];
+        $description = $row['description'];
+        $image = $row['image'];
 
-    // Supprimer l'ancienne image si elle existe
-    if (file_exists($cheminCompletImage)) {
-        unlink($cheminCompletImage);
-    }
+        // Affichage du formulaire pré-rempli avec les informations du véhicule à modifier
+        include('header.php');
+        echo '
+        <div class="ajout">
+        <form action="modifier_vehicule.php" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="immatriculation" value="'.$immatriculation.'">
+            
+            <div>
+                <label for="type">Type de véhicule :</label>
+                <input type="text" id="type" name="type" value="'.$type.'">
+            </div>
+            
+            <div>
+                <label for="immatriculation">Numéro d\'immatriculation :</label>
+                <input type="text" id="immatriculation" name="immatriculation" value="'.$immatriculation.'">
+            </div>
+            
+            <div>
+                <label for="marque">Marque :</label>
+                <select id="marque" name="marque">
+                    <!-- Options pour les marques ici -->
+                </select>
+            </div>
+            
+            <div>
+                <label for="modele">Modèle :</label>
+                <input type="text" id="modele" name="modele" value="'.$modele.'">
+            </div>
+            
+            <div>
+                <label for="date_premiere_circulation">Date de première circulation :</label>
+                <input type="date" id="date_premiere_circulation" name="date_premiere_circulation" value="'.$date_premiere_circulation.'">
+            </div>
+            
+            <div>
+                <label for="prix">Prix :</label>
+                <input type="number" id="prix" name="prix" value="'.$prix.'">
+            </div>
+            
+            <div>
+                <label for="date_rentree_garage">Date de rentrée au garage :</label>
+                <input type="date" id="date_rentree_garage" name="date_rentree_garage" value="'.$date_rentree_garage.'">
+            </div>
+            
+            <div>
+                <label for="chevaux">Chevaux fiscaux :</label>
+                <input type="number" id="chevaux" name="chevaux" value="'.$chevaux.'">
+            </div>
+            
+            <div>
+                <label for="description">Description :</label>
+                <textarea id="description" name="description">'.$description.'</textarea>
+            </div>
+            
+            <div>
+                <label for="nouvelle_image">Nouvelle Image :</label>
+                <input type="file" id="nouvelle_image" name="nouvelle_image" class="custom-file-input">
+            </div>
+            
+            <div>
+                <br><br><button type="submit">Modifier</button>
+            </div>
+        </form>
+        </div>';
 
-    if (move_uploaded_file($nouvelleImage['tmp_name'], $cheminCompletImage)) {
-        // L'image a été téléchargée avec succès, mettez à jour le chemin de l'image dans la requête SQL
-        $sql = "UPDATE vehicule SET type = '$type', marque = '$marque', modele = '$modele', date_premiere_circulation = '$date_premiere_circulation', prix = '$prix', date_rentree_garage = '$date_rentree_garage', chevaux = '$chevaux', description = '$description', image = '$cheminCompletImage' WHERE immatriculation = '$immatriculation'";
+        include('footer.php');
     } else {
-        echo "Erreur lors du téléchargement de l'image.";
-        exit;
+        echo "Aucun véhicule trouvé avec l'immatriculation : $immatriculation";
     }
-}
-
-// Exécutez la requête SQL pour mettre à jour les informations du véhicule
-if ($conn->query($sql) === TRUE) {
-    echo "Modification effectuée avec succès.";
 } else {
-    echo "Erreur lors de la modification : " . $conn->error;
+    echo "Méthode de requête invalide.";
 }
 
-echo "<a href='index.php'><button>Retour à la page d'accueil</button></a>";
-
-// Fermeture de la connexion à la base de données
 $conn->close();
 ?>

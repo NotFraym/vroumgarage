@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+// Vérifiez si l'utilisateur est connecté et a le statut d'administrateur
+if (!isset($_SESSION['username']) || $_SESSION['statut'] !== 'admin') {
+    // Redirigez l'utilisateur vers une autre page ou affichez un message d'erreur
+    header("Location: page_non_autorisee.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -111,7 +122,6 @@
 <option value="Triumph">Triumph</option>
 <option value="Yamaha">Yamaha</option>
 
-
             </select>
         </div>
 
@@ -146,11 +156,9 @@
         </div>
 
         <div>
-  <label for="name" >Image du véhicule :</label>
-  <input type="file" id="image" name="image" class="custom-file-input">
-
-</div>
-
+            <label for="name">Image du véhicule :</label>
+            <input type="file" id="image" name="image" class="custom-file-input">
+        </div>
 
         <br><br><button type="submit">Ajouter ce véhicule</button>
     </form>
@@ -167,3 +175,7 @@
 
 </body>
 </html>
+
+            
+
+         

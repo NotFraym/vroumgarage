@@ -21,7 +21,8 @@
 				<label for="password">Mot de passe :</label>
 				<input type="password" id="password" name="password" required>
 			</div>
-            <button><a href="inscription.php">Inscription</a></button>
+            <button><a href="/inscription.php">Inscription</a></button>
+
 			<div>
 				<input type="submit" value="Se connecter">
 			</div>

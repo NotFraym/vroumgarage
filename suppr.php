@@ -1,4 +1,15 @@
 <?php
+session_start();
+
+// Vérifiez si l'utilisateur est connecté et a le statut d'administrateur
+if (!isset($_SESSION['username']) || $_SESSION['statut'] !== 'admin') {
+    // Redirigez l'utilisateur vers une autre page ou affichez un message d'erreur
+    header("Location: index.php");
+    exit;
+}
+?>
+
+<?php
 include('header.php');
 
 // Vérification que les données ont bien été envoyées en POST
@@ -47,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "Veuillez remplir le formulaire de suppression.";
 }
 
-echo "<a href='index.php'><button>Retour à la page d'accueil</button></a>";
+echo "<a href='/index.php'><button>Retour à la page d'accueil</button></a>";
 
 include('footer.php');
 ?>

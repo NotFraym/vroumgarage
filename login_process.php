@@ -40,12 +40,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			exit();
 		} else {
 			// Mot de passe incorrect
+
 			header("Location: login.php");
+	
 			exit();
 		}
 	} else {
 		// Nom d'utilisateur incorrect
 		header("Location: login.php");
+		
 		exit();
 	}
 
