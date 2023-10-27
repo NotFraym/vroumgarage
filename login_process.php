@@ -6,10 +6,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $password = $_POST['password'];
 
     // Connexion à la base de données
-    $host = '      ';
-    $user = '      ';
-    $pass = '      ';
-    $dbname = '      ';
+    $host = '127.0.0.1';
+    $user = 'e5Mathieu';
+    $pass = 'tfg!DJ!7rpztY3xR';
+    $dbname = 'garage';
 
     $conn = new mysqli($host, $user, $pass, $dbname);
 
