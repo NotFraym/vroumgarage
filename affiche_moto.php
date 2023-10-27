@@ -7,6 +7,15 @@ if ($conn->connect_error) {
     die("Connexion échouée : " . $conn->connect_error);
 }
 
+?>
+<DOCTYPE html>
+<html>
+ <head>
+ <link rel="stylesheet" type="text/css" href="/style.css">
+ </head>   
+</html>
+<?php
+
 // Requête SQL pour récupérer tous les véhicules de type "voiture"
 $sql = "SELECT * FROM vehicule WHERE type = 'moto'";
 
