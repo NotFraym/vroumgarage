@@ -2,45 +2,46 @@
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-	$username = $_POST['username'];
-	$password = $_POST['password'];
-	$hashed_password = hash('sha256', $password);
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $hashed_password = hash('sha256', $password);
 
-	// Enregistrer le nouvel utilisateur dans la base de données avec le statut "client"
+    // Connexion à la base de données
+    $host = '          ';
+    $user = '          ';
+    $pass = '          ';
+    $dbname = '          ';
 
+    try {
+        $conn = new mysqli($host, $user, $pass, $dbname); // Utilisez les informations de connexion ici
 
-	// Connexion à la base de données
-	$servername = "localhost";
-	$db_username = "root";
-	$db_password = "";
-	$db_name = "garage";
+        if ($conn->connect_error) {
+            throw new Exception("Connexion échouée : " . $conn->connect_error);
+        }
 
-	$conn = new mysqli($servername, $db_username, $db_password, $db_name);
+        // Vérifier si le nom d'utilisateur existe déjà
+        $stmt = $conn->prepare("SELECT id FROM user WHERE nom = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-	if ($conn->connect_error) {
-		die("Connexion échouée : " . $conn->connect_error);
-	}
+        if ($result->num_rows > 0) {
+            // Le nom d'utilisateur existe déjà
+            echo "Le nom d'utilisateur existe déjà. Veuillez en choisir un autre.";
+        } else {
+            // Insérer le nouvel utilisateur dans la base de données
+            $stmt = $conn->prepare("INSERT INTO user (nom, mdp, statut) VALUES (?, ?, 'client')");
+            $stmt->bind_param("ss", $username, $hashed_password);
+            $stmt->execute();
 
-	// Vérifier si le nom d'utilisateur existe déjà
-	$stmt = $conn->prepare("SELECT id FROM user WHERE nom = ?");
-	$stmt->bind_param("s", $username);
-	$stmt->execute();
-	$result = $stmt->get_result();
+            echo "Inscription réussie ! Vous pouvez maintenant vous connecter.";
+            echo "<a href='index.php'><button>Retour à la page d'accueil</button></a>";
+        }
 
-	if ($result->num_rows > 0) {
-		// Le nom d'utilisateur existe déjà
-		echo "Le nom d'utilisateur existe déjà. Veuillez en choisir un autre.";
-	} else {
-		// Insérer le nouvel utilisateur dans la base de données
-		$stmt = $conn->prepare("INSERT INTO user (nom, mdp, statut) VALUES (?, ?, 'client')");
-		$stmt->bind_param("ss", $username, $hashed_password);
-		$stmt->execute();
-
-		echo "Inscription réussie ! Vous pouvez maintenant vous connecter.";
-		echo "<a href='/index.php'><button>Retour à la page d'accueil</button></a>";
-	}
-
-	$stmt->close();
-	$conn->close();
+        $stmt->close();
+        $conn->close();
+    } catch (Exception $e) {
+        echo "Erreur : " . $e->getMessage();
+    }
 }
 ?>
