@@ -1,10 +1,6 @@
 <?php
 session_start();
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $hashed_password = hash('sha256', $password);
 
     // Connexion à la base de données
     $host = '127.0.0.1';
@@ -44,5 +40,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } catch (Exception $e) {
         echo "Erreur : " . $e->getMessage();
     }
-}
+
 ?>
