@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $hashed_password = hash('sha256', $password);
 
     // Connexion à la base de données
-    $host = '139.99.237.10';
+    $host = '127.0.0.1';
     $user = 'e5Mathieu';
     $pass = 'tfg!DJ!7rpztY3xR';
     $dbname = 'garage';
