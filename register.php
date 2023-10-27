@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $hashed_password = hash('sha256', $password);
 
     // Connexion à la base de données
-    $host = '          ';
+    $host = '         ';
     $user = '          ';
     $pass = '          ';
     $dbname = '          ';
@@ -18,6 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if ($conn->connect_error) {
             throw new Exception("Connexion échouée : " . $conn->connect_error);
         }
+
 
         // Vérifier si le nom d'utilisateur existe déjà
         $stmt = $conn->prepare("SELECT id FROM user WHERE nom = ?");
