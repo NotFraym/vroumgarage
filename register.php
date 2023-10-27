@@ -7,10 +7,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $hashed_password = hash('sha256', $password);
 
     // Connexion à la base de données
-    $host = '         ';
-    $user = '          ';
-    $pass = '          ';
-    $dbname = '          ';
+    $host = '139.99.237.10';
+    $user = 'e5Mathieu';
+    $pass = 'tfg!DJ!7rpztY3xR';
+    $dbname = 'garage';
 
     try {
         $conn = new mysqli($host, $user, $pass, $dbname); // Utilisez les informations de connexion ici
